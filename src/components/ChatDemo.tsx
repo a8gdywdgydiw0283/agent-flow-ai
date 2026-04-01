@@ -67,17 +67,33 @@ const ChatDemo = () => {
     return () => clearTimeout(timer);
   }, [demoPhase]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim() || isTyping) return;
     const userMsg: Message = { role: "user", content: input.trim() };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setIsTyping(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch(
+        "https://n8n.mohamed-rabiee.tech/webhook/6e7a6309-785b-458c-8d39-d00e387db539",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: userMsg.content }),
+        }
+      );
+      const data = await response.json();
+      const reply = typeof data === "string" ? data : data.output || data.message || data.response || data.text || JSON.stringify(data);
+      setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "Sorry, I'm having trouble connecting right now. Please try again." },
+      ]);
+    } finally {
       setIsTyping(false);
-      setMessages((prev) => [...prev, { role: "assistant", content: getResponse(userMsg.content) }]);
-    }, 1500 + Math.random() * 1000);
+    }
   };
 
   return (
