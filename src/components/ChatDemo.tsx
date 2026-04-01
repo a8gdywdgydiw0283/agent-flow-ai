@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Send, Bot, User } from "lucide-react";
+import { Send, Bot, User, MessageSquare, Mail, Calendar, Database } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
