@@ -83,8 +83,19 @@ const ChatDemo = () => {
           body: JSON.stringify({ message: userMsg.content }),
         }
       );
-      const data = await response.json();
-      const reply = typeof data === "string" ? data : data.output || data.message || data.response || data.text || JSON.stringify(data);
+      const text = await response.text();
+      let reply = "";
+      if (text && text.trim()) {
+        try {
+          const data = JSON.parse(text);
+          reply = typeof data === "string" ? data : data.output || data.message || data.response || data.text || "";
+        } catch {
+          reply = text.trim();
+        }
+      }
+      if (!reply) {
+        reply = "⏳ The AI agent is processing your request but didn't return a response yet. Please try again in a moment.";
+      }
       setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
     } catch {
       setMessages((prev) => [
