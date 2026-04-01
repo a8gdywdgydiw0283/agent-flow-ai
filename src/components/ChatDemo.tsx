@@ -213,21 +213,30 @@ const ChatDemo = () => {
                   e.preventDefault();
                   handleSend();
                 }}
-                className="flex gap-2"
+                className="flex flex-col gap-2"
               >
-                <input
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type a message..."
-                  className="flex-1 bg-secondary rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary/50 transition-all"
-                />
-                <button
-                  type="submit"
-                  disabled={!input.trim() || isTyping}
-                  className="w-11 h-11 rounded-xl bg-primary text-primary-foreground flex items-center justify-center hover:shadow-[0_0_20px_hsl(190_100%_50%/0.4)] transition-all disabled:opacity-40"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
+                <div className="flex items-center justify-between px-1 mb-1">
+                  <span className="text-[10px] text-muted-foreground flex items-center gap-1">
+                    <span className="w-4 h-4 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-[8px] font-bold">AI</span>
+                    AI Integrated
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="اكتب رسالتك..."
+                    dir="rtl"
+                    className="flex-1 bg-secondary border border-border rounded-full px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/30 transition-all text-right"
+                  />
+                  <button
+                    type="submit"
+                    disabled={!input.trim() || isTyping}
+                    className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:shadow-[0_0_20px_hsl(190_100%_50%/0.4)] transition-all disabled:opacity-40"
+                  >
+                    <Send className="w-4 h-4" />
+                  </button>
+                </div>
               </form>
             </div>
           </div>
