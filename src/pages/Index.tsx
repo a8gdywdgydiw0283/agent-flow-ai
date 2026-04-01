@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+
 import HeroSection from "@/components/HeroSection";
 import ChatDemo from "@/components/ChatDemo";
 import HowItWorks from "@/components/HowItWorks";
