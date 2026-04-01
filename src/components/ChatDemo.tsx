@@ -123,16 +123,36 @@ const ChatDemo = () => {
           className="max-w-lg mx-auto"
         >
           <div className="glass neon-border rounded-2xl overflow-hidden">
-            {/* Chat header */}
-            <div className="flex items-center gap-3 px-5 py-4 border-b border-border">
-              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                <Bot className="w-5 h-5 text-primary" />
+            {/* Chat header — Onyx style */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-border">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                  <Bot className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <div className="font-display font-bold text-base tracking-wide">NexusAI</div>
+                  <p className="text-xs text-muted-foreground">AI Receptionist</p>
+                </div>
               </div>
-              <div>
-                <div className="font-display font-semibold text-sm">NexusAI Receptionist</div>
-                <div className="flex items-center gap-1.5">
+              <div className="text-right">
+                <div className="flex items-center gap-1.5 text-xs font-medium mb-1.5 justify-end">
                   <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  <span className="text-xs text-muted-foreground">Online</span>
+                  <span className="text-primary text-[11px]">ONLINE</span>
+                  <span className="text-muted-foreground text-[11px]">| 0ms</span>
+                </div>
+                <div className="flex items-center gap-1.5 justify-end">
+                  <span className="text-[10px] text-muted-foreground mr-1">Integrations:</span>
+                  {[
+                    { icon: <MessageSquare className="w-3 h-3" />, bg: "bg-green-500" },
+                    { icon: <Mail className="w-3 h-3" />, bg: "bg-secondary" },
+                    { icon: <Calendar className="w-3 h-3" />, bg: "bg-secondary" },
+                    { icon: <Database className="w-3 h-3" />, bg: "bg-secondary" },
+                  ].map((item, i) => (
+                    <div key={i} className={`${item.bg} text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center`}>
+                      {item.icon}
+                    </div>
+                  ))}
+                  <div className="bg-secondary text-secondary-foreground rounded text-[9px] font-bold px-1.5 py-0.5">CRM</div>
                 </div>
               </div>
             </div>
