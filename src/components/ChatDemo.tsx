@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Send, Bot, User } from "lucide-react";
+import { Send, Bot, User, MessageSquare, Mail, Calendar, Database } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
@@ -123,16 +123,36 @@ const ChatDemo = () => {
           className="max-w-lg mx-auto"
         >
           <div className="glass neon-border rounded-2xl overflow-hidden">
-            {/* Chat header */}
-            <div className="flex items-center gap-3 px-5 py-4 border-b border-border">
-              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                <Bot className="w-5 h-5 text-primary" />
+            {/* Chat header — Onyx style */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-border">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                  <Bot className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <div className="font-display font-bold text-base tracking-wide">NexusAI</div>
+                  <p className="text-xs text-muted-foreground">AI Receptionist</p>
+                </div>
               </div>
-              <div>
-                <div className="font-display font-semibold text-sm">NexusAI Receptionist</div>
-                <div className="flex items-center gap-1.5">
+              <div className="text-right">
+                <div className="flex items-center gap-1.5 text-xs font-medium mb-1.5 justify-end">
                   <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  <span className="text-xs text-muted-foreground">Online</span>
+                  <span className="text-primary text-[11px]">ONLINE</span>
+                  <span className="text-muted-foreground text-[11px]">| 0ms</span>
+                </div>
+                <div className="flex items-center gap-1.5 justify-end">
+                  <span className="text-[10px] text-muted-foreground mr-1">Integrations:</span>
+                  {[
+                    { icon: <MessageSquare className="w-3 h-3" />, bg: "bg-green-500" },
+                    { icon: <Mail className="w-3 h-3" />, bg: "bg-secondary" },
+                    { icon: <Calendar className="w-3 h-3" />, bg: "bg-secondary" },
+                    { icon: <Database className="w-3 h-3" />, bg: "bg-secondary" },
+                  ].map((item, i) => (
+                    <div key={i} className={`${item.bg} text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center`}>
+                      {item.icon}
+                    </div>
+                  ))}
+                  <div className="bg-secondary text-secondary-foreground rounded text-[9px] font-bold px-1.5 py-0.5">CRM</div>
                 </div>
               </div>
             </div>
@@ -193,21 +213,30 @@ const ChatDemo = () => {
                   e.preventDefault();
                   handleSend();
                 }}
-                className="flex gap-2"
+                className="flex flex-col gap-2"
               >
-                <input
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type a message..."
-                  className="flex-1 bg-secondary rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary/50 transition-all"
-                />
-                <button
-                  type="submit"
-                  disabled={!input.trim() || isTyping}
-                  className="w-11 h-11 rounded-xl bg-primary text-primary-foreground flex items-center justify-center hover:shadow-[0_0_20px_hsl(190_100%_50%/0.4)] transition-all disabled:opacity-40"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
+                <div className="flex items-center justify-between px-1 mb-1">
+                  <span className="text-[10px] text-muted-foreground flex items-center gap-1">
+                    <span className="w-4 h-4 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-[8px] font-bold">AI</span>
+                    AI Integrated
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="اكتب رسالتك..."
+                    dir="rtl"
+                    className="flex-1 bg-secondary border border-border rounded-full px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/30 transition-all text-right"
+                  />
+                  <button
+                    type="submit"
+                    disabled={!input.trim() || isTyping}
+                    className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:shadow-[0_0_20px_hsl(190_100%_50%/0.4)] transition-all disabled:opacity-40"
+                  >
+                    <Send className="w-4 h-4" />
+                  </button>
+                </div>
               </form>
             </div>
           </div>
