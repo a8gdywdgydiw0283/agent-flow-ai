@@ -80,7 +80,7 @@ const ChatDemo = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: userMsg.content }),
+          body: JSON.stringify({ value: userMsg.content }),
         }
       );
       const text = await response.text();
