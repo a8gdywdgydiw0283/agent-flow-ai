@@ -88,7 +88,13 @@ const ChatDemo = () => {
       if (text && text.trim()) {
         try {
           const data = JSON.parse(text);
-          reply = typeof data === "string" ? data : data.output || data.message || data.response || data.text || "";
+          const normalized = Array.isArray(data) ? data[0] : data;
+          reply =
+            typeof data === "string"
+              ? data
+              : typeof normalized === "string"
+                ? normalized
+                : normalized?.output || normalized?.message || normalized?.response || normalized?.text || "";
         } catch {
           reply = text.trim();
         }
