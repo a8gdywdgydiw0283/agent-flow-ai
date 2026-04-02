@@ -38,6 +38,7 @@ const ChatDemo = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [demoPhase, setDemoPhase] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const sessionIdRef = useRef(`web-demo-${Date.now()}`);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -80,7 +81,7 @@ const ChatDemo = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ value: userMsg.content }),
+          body: JSON.stringify({ value: userMsg.content, sessionId: sessionIdRef.current }),
         }
       );
       const text = await response.text();
