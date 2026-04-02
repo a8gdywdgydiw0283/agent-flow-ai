@@ -195,8 +195,15 @@ const ChatDemo = () => {
                         ? "bg-primary text-primary-foreground rounded-br-sm"
                         : "bg-secondary text-secondary-foreground rounded-bl-sm"
                     }`}
-                  >
-                    {msg.content}
+                  dir="auto"
+                  style={{ unicodeBidi: "plaintext" }}
+                >
+                    {msg.content.split("\n").map((line, idx) => (
+                      <span key={idx}>
+                        {line}
+                        {idx < msg.content.split("\n").length - 1 && <br />}
+                      </span>
+                    ))}
                   </div>
                   {msg.role === "user" && (
                     <div className="w-7 h-7 rounded-full bg-accent/20 flex-shrink-0 flex items-center justify-center mt-1">
