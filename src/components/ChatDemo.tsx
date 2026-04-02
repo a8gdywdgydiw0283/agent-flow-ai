@@ -38,7 +38,7 @@ const ChatDemo = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [demoPhase, setDemoPhase] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const sessionIdRef = useRef(`web-demo-${Date.now()}`);
+  const sessionIdRef = useRef("nexus-web-demo-fixed-session");
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
