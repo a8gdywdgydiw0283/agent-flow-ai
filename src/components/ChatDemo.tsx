@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Send, Bot, User, MessageSquare, Mail, Calendar, Database } from "lucide-react";
+import { parseWebhookReply } from "@/lib/chat-response";
 
 interface Message {
   role: "user" | "assistant";
@@ -80,34 +81,22 @@ const ChatDemo = () => {
         "https://n8n.mohamed-rabiee.tech/webhook/6e7a6309-785b-458c-8d39-d00e387db539",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json, text/plain, */*",
+          },
           body: JSON.stringify({ value: userMsg.content, sessionId: sessionIdRef.current }),
         }
       );
-      const text = await response.text();
-      let reply = "";
-      if (text && text.trim()) {
-        try {
-          const data = JSON.parse(text);
-          const normalized = Array.isArray(data) ? data[0] : data;
-          reply =
-            typeof data === "string"
-              ? data
-              : typeof normalized === "string"
-                ? normalized
-                : normalized?.output || normalized?.message || normalized?.response || normalized?.text || "";
-        } catch {
-          reply = text.trim();
-        }
-      }
+      let reply = await parseWebhookReply(response);
       if (!reply) {
-        reply = "⏳ The AI agent is processing your request but didn't return a response yet. Please try again in a moment.";
+        reply = "⏳ I reached your n8n workflow, but it returned an empty reply. Please try again in a moment.";
       }
       setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Sorry, I'm having trouble connecting right now. Please try again." },
+        { role: "assistant", content: "Sorry, I couldn't get a valid response from n8n right now. Please try again." },
       ]);
     } finally {
       setIsTyping(false);
