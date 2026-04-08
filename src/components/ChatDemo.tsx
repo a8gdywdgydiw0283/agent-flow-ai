@@ -19,7 +19,7 @@ const preloadedConversation: Message[] = [
 
 const simulatedResponses: Record<string, string> = {
   default:
-    "Thank you for your message! I'm NexusAI, your intelligent assistant. I can help with appointment scheduling, answering FAQs, and much more. How can I assist you today?",
+    "Thank you for your message! I'm Nour, your intelligent assistant. I can help with appointment scheduling, answering FAQs, and much more. How can I assist you today?",
   hello:
     "Hello! Welcome to Bright Smile Dental. I'm your AI receptionist. Would you like to book an appointment, ask about our services, or check your existing booking?",
   price:
