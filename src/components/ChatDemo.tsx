@@ -167,7 +167,7 @@ const ChatDemo = () => {
             </div>
 
             {/* Messages */}
-            <div className="h-[420px] overflow-y-auto p-5 space-y-4 scrollbar-thin">
+            <div ref={scrollRef} className="h-[420px] overflow-y-auto p-5 space-y-4 scrollbar-thin flex flex-col">
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
