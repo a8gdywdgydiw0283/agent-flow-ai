@@ -168,6 +168,7 @@ const ChatDemo = () => {
 
             {/* Messages */}
             <div ref={scrollRef} className="h-[420px] overflow-y-auto p-5 space-y-4 scrollbar-thin flex flex-col">
+              <div className="flex-1" />
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
@@ -219,7 +220,6 @@ const ChatDemo = () => {
                   </div>
                 </div>
               )}
-              <div className="mt-auto" />
             </div>
 
             {/* Input */}
