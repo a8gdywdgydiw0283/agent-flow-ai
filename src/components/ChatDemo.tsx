@@ -38,11 +38,13 @@ const ChatDemo = () => {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [demoPhase, setDemoPhase] = useState(0);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const sessionIdRef = useRef("nexus-web-demo-fixed-session");
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
   }, [messages, isTyping]);
 
   // Auto-play preloaded conversation
@@ -165,7 +167,8 @@ const ChatDemo = () => {
             </div>
 
             {/* Messages */}
-            <div className="h-[420px] overflow-y-auto p-5 space-y-4 scrollbar-thin">
+            <div ref={scrollRef} className="h-[420px] overflow-y-auto p-5 space-y-4 scrollbar-thin flex flex-col">
+              <div className="flex-1" />
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
@@ -217,7 +220,6 @@ const ChatDemo = () => {
                   </div>
                 </div>
               )}
-              <div ref={bottomRef} />
             </div>
 
             {/* Input */}
