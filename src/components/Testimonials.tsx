@@ -5,7 +5,7 @@ const testimonials = [
   {
     name: "Dr. Sarah Mitchell",
     role: "Owner, Bright Smile Dental",
-    quote: "NexusAI cut our missed appointments by 60%. Patients love the instant booking experience.",
+    quote: "Nour cut our missed appointments by 60%. Patients love the instant booking experience.",
     avatar: "SM",
   },
   {
