@@ -219,7 +219,7 @@ const ChatDemo = () => {
                   </div>
                 </div>
               )}
-              <div ref={bottomRef} />
+              <div className="mt-auto" />
             </div>
 
             {/* Input */}
