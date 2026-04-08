@@ -22,7 +22,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         <a href="#" className="font-display text-xl font-bold text-gradient">
-          NexusAI
+          Nour
         </a>
 
         {/* Desktop */}

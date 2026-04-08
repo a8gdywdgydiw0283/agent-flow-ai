@@ -8,7 +8,7 @@ const Footer = () => (
           <a href="#" className="hover:text-primary transition-colors">Terms</a>
           <a href="#" className="hover:text-primary transition-colors">Contact</a>
         </div>
-        <p className="text-xs text-muted-foreground">© 2026 NexusAI. All rights reserved.</p>
+        <p className="text-xs text-muted-foreground">© 2026 Nour. All rights reserved.</p>
       </div>
     </div>
   </footer>

@@ -139,7 +139,7 @@ const ChatDemo = () => {
                   <Bot className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <div className="font-display font-bold text-base tracking-wide">NexusAI</div>
+                  <div className="font-display font-bold text-base tracking-wide">Nour</div>
                   <p className="text-xs text-muted-foreground">AI Receptionist</p>
                 </div>
               </div>
